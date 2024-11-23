@@ -33,7 +33,7 @@ knn.score(x_test, y_test)
 # %%
 x_for_submit = test[['Pclass', 'SibSp', 'Parch']]
 submit = test[['PassengerId']]
-submit['Submit']=knn.predict(x_for_submit)
+submit['Survived']=knn.predict(x_for_submit)
 
 submit
 # %%
