@@ -1,5 +1,5 @@
-#ランダムフォレスト（Random Forest）
-#train score = 0.820627
+#サポートベクタマシン（support vector machine）
+#train score = 0.78475
 # %%
 import pandas as pd
 import matplotlib.pyplot as mb
@@ -24,12 +24,12 @@ scaler.fit(x_train)
 x_train_scaled=scaler.transform(x_train)
 x_test_scaled=scaler.transform(x_test)
 # %%
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import LinearSVC
 
-rf=RandomForestClassifier()
-rf.fit(x_train_scaled, y_train)
+svc=LinearSVC()
+svc.fit(x_train_scaled, y_train)
 
-rf.score(x_test_scaled, y_test)
+svc.score(x_test_scaled, y_test)
 # %%
 x_for_submit = test[['Pclass', 'SibSp', 'Parch', 'Sex', 'Fare']]
 submit = test[['PassengerId']]
@@ -45,8 +45,8 @@ scaler.fit(x_train)
 
 x_for_submit_scaled=scaler.transform(x_for_submit)
 
-submit['Survived']=rf.predict(x_for_submit_scaled)
+submit['Survived']=svc.predict(x_for_submit_scaled)
 submit
 # %%
-submit.to_csv('../submission/submit04_rf.csv', index=False)
+submit.to_csv('../submission/submit05_svc.csv', index=False)
 # %%

@@ -1,3 +1,5 @@
+#k-近傍法（k-nearest neighbor）
+#train score = 0.8161434
 # %%
 import pandas as pd
 import matplotlib.pyplot as mb
@@ -97,8 +99,10 @@ x_for_submit=pd.get_dummies(x_for_submit, columns=['Pclass', 'Sex'])
 
 x_for_submit['Fare']=x_for_submit['Fare'].fillna(x_for_submit['Fare'].mean())
 
+#scaler.fitはtrainに対してfitさせたものをtestに使うのがポイント
+#ただし、今回の場合はtestにfitさせたものでpredictしたほうがスコアは良かった
 scaler=StandardScaler()
-scaler.fit(x_for_submit)
+scaler.fit(x_train)
 
 x_for_submit_scaled=scaler.transform(x_for_submit)
 
